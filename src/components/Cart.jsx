@@ -6,6 +6,8 @@ import { addCart,deleteCart } from "../redux/action/index.js"
 const Cart = () => {
     const state = useSelector((state)=>state.handleCart)
     const dispatch= useDispatch()
+    const loginState = useSelector((shouldLogin)=>shouldLogin.loginDetect)
+    console.log(loginState,"user is logged in state 15")
     const handleAdd = (product)=>{
         dispatch(addCart(product))
     }
@@ -47,7 +49,7 @@ const Cart = () => {
         })}
         </div>
         <div className='mx-auto d-flex m-2'>
-        <NavLink to="/checkout" className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Proceed for checkout</NavLink>
+        <NavLink to={loginState?"/checkout":"/login"} className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Proceed for checkout</NavLink>
         </div>
     </div>
   )

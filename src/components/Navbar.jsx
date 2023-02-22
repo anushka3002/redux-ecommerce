@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const state = useSelector((state)=>state.handleCart)
+  const loginState = useSelector((shouldLogin)=>shouldLogin.loginDetect)
+  let name = JSON.parse(localStorage.getItem("logged user")) || "" ;
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm bg-white">
@@ -35,14 +37,26 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
+            {loginState?
+            <div className="dropdown">
+            <a className="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              {name?name.split(" ")[0]:""}
+            </a>
+            <ul className="dropdown-menu">
+              <li><a className="dropdown-item" href="#">Action</a></li>
+              <li><a className="dropdown-item" href="#">Another action</a></li>
+              <li><a className="dropdown-item" href="#">Something else here</a></li>
+            </ul>
+          </div>:
            <div className="button">
             <NavLink to="/login" className="btn btn-outline-dark">
               <i className="fa fa-sign-in me-1">Login</i>
             </NavLink>
-            <NavLink to="/cart" className="btn btn-outline-dark ms-2">
-              <i className="fa fa-shopping-cart me-1">Cart({state.length})</i>
-            </NavLink>
            </div>
+           }
+           <div className="button"><NavLink to="/cart" className="btn btn-outline-dark ms-2">
+              <i className="fa fa-shopping-cart me-1">Cart({state.length})</i>
+            </NavLink></div>
           </div>
         </div>
       </nav>

@@ -4,17 +4,23 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { CgSpinnerAlt } from "react-icons/cg";
+import { useDispatch } from "react-redux";
+import { loginDetect } from "../redux/action";
 
 const Register = () => {
 
     const {register,handleSubmit} = useForm()
     const [loading,setLoading] = useState(false)
     const navigate = useNavigate();
+    const dispatch = useDispatch()
 
     const onSubmit =(data)=>{
         setLoading(true)
         axios.post("https://63e9b70a811db3d7efffb3b2.mockapi.io/api/v1/nearkode",data).then((data)=>{
             navigate("/")
+            // console.log(data.name,"data.name in register")
+            localStorage.setItem("logged user",JSON.stringify(data.data.name))
+            dispatch(loginDetect())
             console.log(data,"register")
             setLoading(false)
         }).catch((err)=>{

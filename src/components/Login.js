@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { CgSpinnerAlt } from "react-icons/cg";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { loginDetect } from "../redux/action";
 
 const Login = () => {
 
@@ -13,7 +15,7 @@ const Login = () => {
   const [loading,setLoading] = useState(false)
   const [validUser,setValidUser] = useState(false)
   const navigate = useNavigate(); 
-console.log(validUser,"validUser")
+  const dispatch = useDispatch()
   useEffect(() => {
     axios
       .get("https://63e9b70a811db3d7efffb3b2.mockapi.io/api/v1/nearkode")
@@ -30,20 +32,24 @@ console.log(validUser,"validUser")
     let userCount = 0
     loginData.map((e)=>{
       if(e.email===data.email && e.password ===data.password){
-        console.log(e.email,e.password,"e.email")
+        setValidUser(true)
+        localStorage.setItem("logged user",JSON.stringify(e.name))
+        dispatch(loginDetect())
+        console.log(e.email,e.password,e.name,"e.email")
         userCount++
         setError(false)
         setLoading(true)
         navigate("/")
-        setValidUser(true)
+        console.log("valid user should be true")
       }
     })
     if(userCount==0){
-      console.log("0")
+      console.log(validUser,"0")
       setError(true)
       setLoading(false)
     }
   }
+  console.log(validUser,"validUser true wala")
 
   return (
     <div className="h-screen w-screen bg-[#eeeff1]">

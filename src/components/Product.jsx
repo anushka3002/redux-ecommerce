@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { addCart } from "../redux/action/index.js"
 import 'react-loading-skeleton/dist/skeleton.css'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Product = () => {
 

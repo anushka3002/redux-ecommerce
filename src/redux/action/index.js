@@ -14,3 +14,11 @@ export const deleteCart = (product)=>{
         payload:product
     }
 }
+
+// for login signup identification
+export const loginDetect = ()=>{
+    return{
+        type:"LOGINDETECT",
+        // payload:product
+    }
+}
