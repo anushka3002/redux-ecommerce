@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react'
 import Skeleton from 'react-loading-skeleton';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
-import Products from './Products';
+import { addCart } from "../redux/action/index.js"
 import 'react-loading-skeleton/dist/skeleton.css'
+import { useDispatch } from 'react-redux';
 
 const Product = () => {
 
     const [product, setProduct] = useState([]);
-    const [filter, setFilter] = useState();
     const [loading, setLoading] = useState(false);
     const {id} = useParams()
 
@@ -21,6 +21,11 @@ const Product = () => {
     };
     getProducts();
   }, []);
+
+  const dispatch = useDispatch()
+  const addProduct = (product) =>{
+    dispatch(addCart(product))
+  }
 
   const Loading=()=>{
     return(
@@ -59,7 +64,7 @@ const Product = () => {
               $ {product.price}
             </h3>
             <p className='lead'>{product.description}</p>
-            <button className="btn btn-outline-dark px-4 py-2">
+            <button onClick={()=>addProduct(product)} className="btn btn-outline-dark px-4 py-2">
               Add to Cart
             </button>
             <NavLink to="/cart" className="btn btn-dark ms-2 px-3 py-2">
