@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Skeleton from "react-loading-skeleton";
+import { NavLink } from "react-router-dom";
+import 'react-loading-skeleton/dist/skeleton.css'
 
 const Products = () => {
   const [data, setData] = useState([]);
@@ -22,7 +24,6 @@ const Products = () => {
     };
     getProducts();
   }, []);
-  console.log(data);
 
   const Loading = () => {
     return (
@@ -70,9 +71,9 @@ const Products = () => {
                   <p className="card-text lead fw-bold">
                     ${product.price}
                   </p>
-                  <a href="#" className="btn btn-outline-dark">
+                  <NavLink to={`/products/${product.id}`} className="btn btn-outline-dark">
                     Buy Now
-                  </a>
+                  </NavLink>
                 </div>
                 </div>
               </div>
