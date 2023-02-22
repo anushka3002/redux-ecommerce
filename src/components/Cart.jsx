@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
 import { addCart,deleteCart } from "../redux/action/index.js"
 
 const Cart = () => {
@@ -17,7 +18,7 @@ const Cart = () => {
         {state?.map((product) => {
           return (
             <>
-              <div className="col-md-4 mb-4 outline-none">
+              <div className="col-md-4 mb-4 outline-none m-4 mx-auto">
                 <div className="card h-100 text-center p-4 d-flex flex-row" style={{display:"flex"}} key={product.id}>
                   <div>
                 <img src={product.image} className="card-img-top" alt={product.title} height="250px"/>
@@ -45,7 +46,9 @@ const Cart = () => {
           );
         })}
         </div>
-        {/* <div className='w-25'>asdf</div> */}
+        <div className='mx-auto d-flex m-2'>
+        <NavLink to="/checkout" className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Proceed for checkout</NavLink>
+        </div>
     </div>
   )
 }
