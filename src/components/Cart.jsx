@@ -5,15 +5,24 @@ import { addCart,deleteCart } from "../redux/action/index.js"
 
 const Cart = () => {
     const state = useSelector((state)=>state.handleCart)
+    console.log(state,"price")
     const dispatch= useDispatch()
     const loginState = useSelector((shouldLogin)=>shouldLogin.loginDetect)
-    console.log(loginState,"user is logged in state 15")
     const handleAdd = (product)=>{
         dispatch(addCart(product))
     }
     const handleDel = (product)=>{
         dispatch(deleteCart(product))
     }
+    const totalPrice = state.map((e)=>{
+      return e.price
+    })
+    let sum=0;
+    for(let i=0;i<totalPrice.length;i++){
+      sum=sum+totalPrice[i]
+    }
+    console.log(sum,"sum")
+    localStorage.setItem("total price",JSON.stringify(sum))
   return (
     <div className=''>
       <div>
@@ -47,6 +56,9 @@ const Cart = () => {
             </>
           );
         })}
+        </div>
+        <div className='mx-auto d-flex m-2'>
+        <button className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Total price : ${sum}</button>
         </div>
         <div className='mx-auto d-flex m-2'>
         <NavLink to={loginState?"/checkout":"/login"} className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Proceed for checkout</NavLink>

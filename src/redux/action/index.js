@@ -7,6 +7,15 @@ export const addCart = (product)=>{
 }
 
 
+// for adding price
+export const addPrice = (product)=>{
+    return{
+        type:"ADDPRICE",
+        payload:product
+    }
+}
+
+
 // for deleting items from cart
 export const deleteCart = (product)=>{
     return{

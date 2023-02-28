@@ -21,7 +21,6 @@ const handleCart = (state=cart, action) =>{
                     }
                 ]
             }
-            break;
 
             case "DELETEITEM":
                 const exist1 = state.find((x)=>x.id==product.id)
@@ -33,9 +32,14 @@ const handleCart = (state=cart, action) =>{
                         x.id ==product.id ? {...x,qty:x.qty-1} : x
                     )
                 }
+
+            case "ADDPRICE":
+                const sum = product.price
+                sum=sum+product.price
+                return sum
+
             default:
                 return state
-                break;
     }
 }
 
