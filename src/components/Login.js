@@ -35,21 +35,17 @@ const Login = () => {
         setValidUser(true)
         localStorage.setItem("logged user",JSON.stringify(e.name))
         dispatch(loginDetect())
-        console.log(e.email,e.password,e.name,"e.email")
         userCount++
         setError(false)
         setLoading(true)
         navigate("/")
-        console.log("valid user should be true")
       }
     })
     if(userCount==0){
-      console.log(validUser,"0")
       setError(true)
       setLoading(false)
     }
   }
-  console.log(validUser,"validUser true wala")
 
   return (
     <div className="h-screen w-screen bg-[#eeeff1]">

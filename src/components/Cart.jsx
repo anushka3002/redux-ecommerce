@@ -60,7 +60,6 @@ const Cart = () => {
         })}
         </div>
         <div className='mx-auto d-flex m-2'>
-          {console.log(sum, "sum ki value")}
         <button className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Total price : ${sum}</button>
         </div>
         <div className='mx-auto d-flex m-2'>

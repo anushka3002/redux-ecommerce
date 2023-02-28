@@ -18,10 +18,8 @@ const Register = () => {
         setLoading(true)
         axios.post("https://63e9b70a811db3d7efffb3b2.mockapi.io/api/v1/nearkode",data).then((data)=>{
             navigate("/")
-            // console.log(data.name,"data.name in register")
             localStorage.setItem("logged user",JSON.stringify(data.data.name))
             dispatch(loginDetect())
-            console.log(data,"register")
             setLoading(false)
         }).catch((err)=>{
             console.log(err)
