@@ -7,6 +7,7 @@ const Cart = () => {
     let sum= 0
     const state = useSelector((state)=>state.handleCart)
     const data = JSON.parse(localStorage.getItem("cart products")) || []
+    const login = JSON.parse(localStorage.getItem("logged user")) || []
     const dispatch= useDispatch()
     const loginState = useSelector((shouldLogin)=>shouldLogin.loginDetect)
     const handleAdd = (product)=>{
@@ -63,7 +64,7 @@ const Cart = () => {
         <button className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Total price : ${sum}</button>
         </div>
         <div className='mx-auto d-flex m-2'>
-        <NavLink to={loginState?"/checkout":"/login"} className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Proceed for checkout</NavLink>
+        <NavLink to={login.length?"/checkout":"/login"} className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Proceed for checkout</NavLink>
         </div>
     </div>
   )

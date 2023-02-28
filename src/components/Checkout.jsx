@@ -1,23 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { NavLink } from "react-router-dom";
+
 
 const Checkout = () => {
   const totalPrice = JSON.parse(localStorage.getItem("total price"));
+  const [data,setData] = useState([])
+  const {register,handleSubmit} = useForm()
+
   return (
     <div className="flex flex-row mx-4">
       <div className=" mt-4">
         <h4>Ship to</h4>
         <form class="row g-3 col-md-8 border mt-4">
           <div class="col-md-5">
-            <label for="inputEmail4" class="form-label">
+            <label for="inputName4" class="form-label">
               Name
             </label>
-            <input type="email" class="form-control" id="inputEmail4" />
+            <input type="text" class="form-control" id="inputName4" />
           </div>
           <div class="col-md-6">
-            <label for="inputPassword4" class="form-label">
+            <label for="inputPhone4" class="form-label">
               Phone
             </label>
-            <input type="password" class="form-control" id="inputPassword4" />
+            <input type="number" class="form-control" id="inputPhone4" />
           </div>
           <div class="col-12">
             <label for="inputAddress" class="form-label">
@@ -102,9 +108,9 @@ const Checkout = () => {
             </label>
             <input type="text" class="form-control" id="inputZip" />
           </div>
-          <button className="btn btn-dark mx-auto text-center justify-content-center py-2 px-3">
+          <NavLink to="/payment" className="btn btn-dark mx-auto text-center justify-content-center py-2 px-3">
             Next
-          </button>
+          </NavLink>
         </form>
       </div>
       <div className="col-md-3 mt-4">
