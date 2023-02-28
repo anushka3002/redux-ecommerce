@@ -5,7 +5,9 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
   const state = useSelector((state)=>state.handleCart)
   const loginState = useSelector((shouldLogin)=>shouldLogin.loginDetect)
+  const cart = JSON.parse(localStorage.getItem("cart products")) || ""
   let name = JSON.parse(localStorage.getItem("logged user")) || "" ;
+  const login = JSON.parse(localStorage.getItem("login detect")) || "" ;
   return (
     <div>
       <nav className="navbar navbar-expand-lg bg-body-tertiary py-3 shadow-sm bg-white">
@@ -37,7 +39,7 @@ const Navbar = () => {
                 </NavLink>
               </li>
             </ul>
-            {loginState?
+            {login?
             <div className="dropdown">
             <a className="btn btn-secondary dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               {name?name.split(" ")[0]:""}

@@ -11,6 +11,7 @@ const Product = () => {
     const [product, setProduct] = useState([]);
     const [loading, setLoading] = useState(false);
     const {id} = useParams()
+    const cart=JSON.parse(localStorage.getItem("cart products")) || []
 
     useEffect(() => {
     const getProducts = async () => {
@@ -25,6 +26,8 @@ const Product = () => {
   const dispatch = useDispatch()
   const addProduct = (product) =>{
     dispatch(addCart(product))
+    cart.push(product)
+    localStorage.setItem("cart products",JSON.stringify(cart))
   }
 
   const Loading=()=>{

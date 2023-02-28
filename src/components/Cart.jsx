@@ -4,8 +4,9 @@ import { NavLink } from 'react-router-dom'
 import { addCart,deleteCart } from "../redux/action/index.js"
 
 const Cart = () => {
+    let sum= 0
     const state = useSelector((state)=>state.handleCart)
-    console.log(state,"price")
+    const data = JSON.parse(localStorage.getItem("cart products")) || []
     const dispatch= useDispatch()
     const loginState = useSelector((shouldLogin)=>shouldLogin.loginDetect)
     const handleAdd = (product)=>{
@@ -15,14 +16,14 @@ const Cart = () => {
         dispatch(deleteCart(product))
     }
     const totalPrice = state.map((e)=>{
-      return e.price
+      return e.price * e.qty
     })
-    let sum=0;
+      
     for(let i=0;i<totalPrice.length;i++){
       sum=sum+totalPrice[i]
     }
-    console.log(sum,"sum")
     localStorage.setItem("total price",JSON.stringify(sum))
+    
   return (
     <div className=''>
       <div>
@@ -58,6 +59,7 @@ const Cart = () => {
         })}
         </div>
         <div className='mx-auto d-flex m-2'>
+          {console.log(sum, "sum ki value")}
         <button className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Total price : ${sum}</button>
         </div>
         <div className='mx-auto d-flex m-2'>
