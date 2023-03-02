@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 
 
 const Checkout = () => {
   const totalPrice = JSON.parse(localStorage.getItem("total price"));
   const [data,setData] = useState([])
   const {register,handleSubmit} = useForm()
+  const navigate = useNavigate();
 
   return (
     <div className="flex flex-row mx-4">
@@ -17,13 +18,13 @@ const Checkout = () => {
             <label for="inputName4" class="form-label">
               Name
             </label>
-            <input type="text" class="form-control" id="inputName4" />
+            <input type="text" class="form-control" id="inputName4" required/>
           </div>
           <div class="col-md-6">
             <label for="inputPhone4" class="form-label">
               Phone
             </label>
-            <input type="number" class="form-control" id="inputPhone4" />
+            <input type="number" class="form-control" id="inputPhone4" required/>
           </div>
           <div class="col-12">
             <label for="inputAddress" class="form-label">
@@ -34,6 +35,7 @@ const Checkout = () => {
               class="form-control"
               id="inputAddress"
               placeholder="1234 Main St"
+              required
             />
           </div>
           <div class="col-12">
@@ -45,13 +47,14 @@ const Checkout = () => {
               class="form-control"
               id="inputAddress2"
               placeholder="Apartment, studio, or floor"
+              required
             />
           </div>
           <div class="col-md-6">
             <label for="inputCity" class="form-label">
               City
             </label>
-            <input type="text" class="form-control" id="inputCity" />
+            <input type="text" class="form-control" id="inputCity" required/>
           </div>
           <div class="col-md-4">
             <label for="inputState" class="form-label">
@@ -106,11 +109,11 @@ const Checkout = () => {
             <label for="inputZip" class="form-label">
               Zip
             </label>
-            <input type="text" class="form-control" id="inputZip" />
+            <input type="text" class="form-control" id="inputZip" required/>
           </div>
-          <NavLink to="/payment" className="btn btn-dark mx-auto text-center justify-content-center py-2 px-3">
+          <button onClick={()=>navigate('/payment')} type="submit" to="/payment" className="btn btn-dark mx-auto text-center justify-content-center py-2 px-3">
             Next
-          </NavLink>
+          </button>
         </form>
       </div>
       <div className="col-md-3 mt-4">
