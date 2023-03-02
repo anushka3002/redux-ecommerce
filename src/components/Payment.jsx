@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { NavLink } from 'react-router-dom'
+import { emptyCart } from "../redux/action/index.js"
 
 const Payment = () => {
   const [visible,setVisible] = useState(false)
+  const dispatch= useDispatch()
+  const handleEmpty = ()=>{
+    dispatch(emptyCart())
+}
 
   return (
     <div className='col-md-3 mx-auto mt-4 p-2'>
@@ -19,7 +25,7 @@ const Payment = () => {
 
             {!visible && <input type="number" class="form-control mt-2" />}
         </div>
-        <NavLink to="/thankyou" onClick={()=>setVisible(true)} className="btn btn-dark  w-full mx-auto text-center justify-content-center py-2 px-3 mt-4">
+        <NavLink to="/thankyou" onClick={()=>{setVisible(true);handleEmpty()}} className="btn btn-dark  w-full mx-auto text-center justify-content-center py-2 px-3 mt-4">
             Pay
           </NavLink>
     </div>

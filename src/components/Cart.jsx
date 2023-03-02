@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
-import { addCart,deleteCart } from "../redux/action/index.js"
+import { addCart,deleteCart, emptyCart } from "../redux/action/index.js"
 
 const Cart = () => {
     let sum= 0
@@ -16,6 +16,7 @@ const Cart = () => {
     const handleDel = (product)=>{
         dispatch(deleteCart(product))
     }
+
     const totalPrice = state.map((e)=>{
       return e.price * e.qty
     })
@@ -28,7 +29,7 @@ const Cart = () => {
   return (
     <div className=''>
       <div>
-        {state?.map((product) => {
+        {state.length>0 ? state?.map((product) => {
           return (
             <>
               <div className="col-md-4 mb-4 outline-none m-4 mx-auto">
@@ -57,14 +58,14 @@ const Cart = () => {
               </div>
             </>
           );
-        })}
+        }): <div style={{height: "400px"}} className='my-auto flex-col flex justify-content-center align-middle text-center'><h3 className='align-middle'>0 items in the cart</h3></div>}
         </div>
-        <div className='mx-auto d-flex m-2'>
+       {state.length>0 && <div className='mx-auto d-flex m-2'>
         <button className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Total price : ${sum}</button>
-        </div>
-        <div className='mx-auto d-flex m-2'>
+        </div>}
+        {state.length > 0 && <div className='mx-auto d-flex m-2'>
         <NavLink to={login.length?"/checkout":"/login"} className='btn btn-dark mx-auto text-center justify-content-center py-2 px-3'>Proceed for checkout</NavLink>
-        </div>
+        </div>}
     </div>
   )
 }

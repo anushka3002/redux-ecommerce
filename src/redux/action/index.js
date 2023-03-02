@@ -24,6 +24,13 @@ export const deleteCart = (product)=>{
     }
 }
 
+// for removing items from cart
+export const emptyCart = (product)=>{
+    return{
+        type:"DELETEITEM",
+    }
+}
+
 // for login signup identification
 export const loginDetect = ()=>{
     return{
