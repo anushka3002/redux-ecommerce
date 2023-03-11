@@ -2,7 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavLink } from 'react-router-dom'
 import { addCart,deleteCart, emptyCart } from "../redux/action/index.js"
-
+// this is cart
 const Cart = () => {
     let sum= 0
     const state = useSelector((state)=>state.handleCart)
